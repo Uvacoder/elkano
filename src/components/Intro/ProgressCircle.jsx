@@ -4,7 +4,7 @@ import mouse_icon from "../../images/icons/scroll_mouse_icon.png";
 import LandingScratch from "../Intro/LandingScratch";
 
 const DIAMETER = 50;
-const STROKE_WIDTH = 0.3;
+const STROKE_WIDTH = 0.4;
 const RADIUS = DIAMETER / 2 - STROKE_WIDTH / 2;
 const CIRCUMFERENCE = Math.PI * RADIUS * 2;
 
@@ -18,14 +18,14 @@ const ProgressCircle = () => {
     const updateHeight = () => {
       if (!circleRef.current) return;
       const { height } = circleRef.current.getBoundingClientRect();
-      setProgress(window.scrollY / (window.innerHeight + height));
+      setProgress(window.scrollY / (height));
     };
     updateHeight();
     window.addEventListener("scroll", updateHeight);
     return () => {
       window.removeEventListener("scroll", updateHeight);
     };
-  }, []);
+  }, [setProgress]);
 
   return (
     <div ref={circleRef}>
